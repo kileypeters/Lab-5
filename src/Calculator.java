@@ -83,8 +83,23 @@ public class Calculator
     protected static int calculateThreeTokens(String[] tokens)
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
-        // TODO: complete this...
+    	int a = Integer.parseInt(tokens[0]);
+    	int b = Integer.parseInt(tokens[2]);
     	
+    	if (tokens[1].equals("+"))
+    	{
+    		return a + b;
+    	}
+    	else if (tokens[1].equals("-"))
+    	{
+    		return a - b;
+    	}
+    	else if (tokens[1].equals("/"))
+    	{
+    		return a / b;
+    	}
+    	
+        // TODO: complete this...
     	return 0;
     }
 
