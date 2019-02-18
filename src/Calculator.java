@@ -138,20 +138,29 @@ public class Calculator
         {
             // TODO: complete this...
         case 0: //throw a CalculatorException(message="Illegal Token Length", type=0)
-        		if (token)
+        		throw new CalculatorException("Illegal Token Length");
         	
         case 1: //token[0] = "quit": return Integer.MIN_VALUE (i.e. the program should quit)
+        		//token[0] = anything else: throw a CalculatorException(message="Illegal Command", type=1)
+        		if(tokens[0].equalsIgnoreCase("quit"))
+        		{
+        			return Integer.MIN_VALUE;
+        		}
+        		else 
+        		{
+        			throw new CalculatorException("Illegal Command");
+        		}
         	    
-        case 2: //token[0] = anything else: throw a CalculatorException(message="Illegal Command", type=1)
+        case 2:  //return the result of calculateTwoTokens(tokens)
+        		return calculateTwoTokens(tokens);
         	
-        case 3: //return the result of calculateTwoTokens(tokens)
+        case 3: //3 tokens: return the result of calculateThreeTokens(tokens)
+        		return calculateThreeTokens(tokens);
         	
-        case 4: //3 tokens: return the result of calculateThreeTokens(tokens)
-        	
-        case 5: //4+ tokens: throw a CalculatorException(message="Illegal Token Length", type=0)
+        case 4: //4+ tokens: throw a CalculatorException(message="Illegal Token Length", type=0)
+        		throw new CalculatorException("Illegal Token Length");
         }
-        
-        return 0;
+		return 0;
 
     }
 
