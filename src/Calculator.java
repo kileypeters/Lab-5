@@ -36,6 +36,20 @@ public class Calculator
     {
         int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
         // TODO: complete this...
+        
+        int result = 0;
+        
+        if (tokens[0].equalsIgnoreCase("negate"))
+        {
+        	result = - a;
+        }
+        else if (tokens[0].equalsIgnoreCase("halve"))
+        {
+        	result = a / 2;
+        }
+        
+        
+        return result;
     }
 
     /**
@@ -70,6 +84,8 @@ public class Calculator
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
         // TODO: complete this...
+    	
+    	return 0;
     }
 
     /**
@@ -106,7 +122,21 @@ public class Calculator
         switch(tokens.length)
         {
             // TODO: complete this...
+        case 0: //throw a CalculatorException(message="Illegal Token Length", type=0)
+        		if (token)
+        	
+        case 1: //token[0] = "quit": return Integer.MIN_VALUE (i.e. the program should quit)
+        	    
+        case 2: //token[0] = anything else: throw a CalculatorException(message="Illegal Command", type=1)
+        	
+        case 3: //return the result of calculateTwoTokens(tokens)
+        	
+        case 4: //3 tokens: return the result of calculateThreeTokens(tokens)
+        	
+        case 5: //4+ tokens: throw a CalculatorException(message="Illegal Token Length", type=0)
         }
+        
+        return 0;
 
     }
 
@@ -141,8 +171,38 @@ public class Calculator
      */
     public static String parseAndExecute(String input)
     {
+    	String[] tokens = input.split("\\s");
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
+    	
+    	
+    	
+    	try {
+			int num = execute(tokens);
+	    	if (num == 0)
+	    	{
+	    		return "quit";
+	    	}
+	    	else if (tokens.length == 2)
+	    	{
+	    		return String.format("The result is: %d", arg1);
+	    	}
+	    	else if (tokens.length == 3)
+	    	{
+	    		return String.format("The result is: %d", arg1);
+	    	}
+	    	
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return "Input number cannot be parsed to an int. Please try again.";
+		} catch (CalculatorException e) {
+			e.printStackTrace();
+			return String.format("Calculator Exception, message is: %s", args);
+		}
+    	catch (ArithmeticException e)
+    	{
+    		return "Attempted to divide by 0. Please try again.";
+    	}
     }
 }
