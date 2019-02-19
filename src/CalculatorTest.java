@@ -289,6 +289,11 @@ public class CalculatorTest {
     public void parseAndExecuteTestInvalidNumber() throws AssertException
     {
         // TODO: complete this test...
+    	String result = Calculator.parseAndExecute("foo + foo");
+        Assert.assertEquals("Input number cannot be parsed to an int. Please try again.", result);
+        
+    	String result2 = Calculator.parseAndExecute("halve foo");
+        Assert.assertEquals("Input number cannot be parsed to an int. Please try again.", result2);
     }
 
     /**
