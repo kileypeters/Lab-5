@@ -197,6 +197,15 @@ public class CalculatorTest {
     public void executeTestValidQuit() throws AssertException
     {
         // TODO: complete this test...
+    	try
+        {
+            int result = Calculator.execute(new String[] {"quit"});
+            Assert.assertEquals(Integer.MIN_VALUE, result);
+        }
+        catch (Exception e)
+        {
+            Assert.fail("Legal expression threw an Exception: " + e.getMessage());
+        }
     }
 
     /**
