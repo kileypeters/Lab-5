@@ -103,6 +103,15 @@ public class CalculatorTest {
     public void calculateThreeTokensTestValidSubtract() throws AssertException
     {
         // TODO: complete this test...
+    	try
+        {
+            int result = Calculator.calculateThreeTokens(new String[] {"5", "-", "2"});
+            Assert.assertEquals(3, result);
+        }
+        catch (Exception e)
+        {
+            Assert.fail("Legal expression threw an Exception: " + e.getMessage());
+        }
     }
 
     /**
