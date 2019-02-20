@@ -34,6 +34,7 @@ public class Calculator
      */
     protected static int calculateTwoTokens(String[] tokens) throws NumberFormatException, CalculatorException
     {
+
         int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
         // TODO: complete this...
         
@@ -47,9 +48,14 @@ public class Calculator
         {
         	result = a / 2;
         }
-        
+        else
+        {
+        	throw new CalculatorException("Illegal Command");
+        }
         
         return result;
+
+
     }
 
     /**
@@ -99,6 +105,10 @@ public class Calculator
     	{
     		result = a / b;
     	}
+    	 else
+         {
+         	throw new CalculatorException("Illegal Command");
+         }
     	
         // TODO: complete this...
     	return result;
@@ -138,11 +148,10 @@ public class Calculator
         switch(tokens.length)
         {
             // TODO: complete this...
-        case 0: //throw a CalculatorException(message="Illegal Token Length", type=0)
+        case 0: 
         		throw new CalculatorException("Illegal Token Length");
         	
-        case 1: //token[0] = "quit": return Integer.MIN_VALUE (i.e. the program should quit)
-        		//token[0] = anything else: throw a CalculatorException(message="Illegal Command", type=1)
+        case 1: 
         		if(tokens[0].equalsIgnoreCase("quit"))
         		{
         			return Integer.MIN_VALUE;
@@ -152,22 +161,22 @@ public class Calculator
         			throw new CalculatorException("Illegal Command");
         		}
         	    
-        case 2:  //return the result of calculateTwoTokens(tokens)
+        case 2:  
         	if (tokens[0].equalsIgnoreCase("negate") || tokens[0].equalsIgnoreCase("halve"))
         		return calculateTwoTokens(tokens);
         	else
         		throw new CalculatorException("Illegal Command");
         	
-        case 3: //3 tokens: return the result of calculateThreeTokens(tokens)
-        	if (tokens[1].equals("/") || tokens[1].equals("+") || tokens[1].equals("-"))
-        		return calculateThreeTokens(tokens);
-        	else
-        		throw new CalculatorException("Illegal Command");
+        case 3: 
+        		if (tokens[1].equals("/") || tokens[1].equals("+") || tokens[1].equals("-"))
+        			return calculateThreeTokens(tokens);
+        		else
+        			throw new CalculatorException("Illegal Command");
         	
-        case 4: //4+ tokens: throw a CalculatorException(message="Illegal Token Length", type=0)
+        case 4: 
         		throw new CalculatorException("Illegal Token Length");
         default:
-        	throw new CalculatorException("Illegal Token Length");
+        		throw new CalculatorException("Illegal Token Length");
         }
 
     }
@@ -210,7 +219,10 @@ public class Calculator
     	try 
     	{
     		int num = execute(tokens);	
+    		if (num != Integer.MIN_VALUE) {
     		return String.format("The result is: %d", num);
+    		}
+    		return "quit";
 		} 
     	catch (NumberFormatException e) 
     	{
@@ -220,7 +232,7 @@ public class Calculator
     	catch (CalculatorException e) 
     	{
 			
-			return String.format("Calculator Exception, message is: %s", e);
+			return String.format("Calculator Exception, message is: %s", e.getMessage());
 		}
     	catch (ArithmeticException e)
     	{
