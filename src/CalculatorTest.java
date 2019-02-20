@@ -72,8 +72,6 @@ public class CalculatorTest {
          }
          catch (CalculatorException e)
          {
-             // We expect the function to throw a NumberFormatException (from failure of Integer.parseInt)
-             // Success; Assert.fail will not be thrown and the code will complete the test, thus succeeding.
       	   Assert.assertEquals("Illegal Command", e.getMessage());
          }
          catch (Exception e)
@@ -185,8 +183,6 @@ public class CalculatorTest {
            }
            catch (CalculatorException e)
            {
-               // We expect the function to throw a NumberFormatException (from failure of Integer.parseInt)
-               // Success; Assert.fail will not be thrown and the code will complete the test, thus succeeding.
         	   Assert.assertEquals("Illegal Command", e.getMessage());
            }
            catch (Exception e)
@@ -313,6 +309,21 @@ public class CalculatorTest {
 
         // Token length is > 3:
         // TODO: complete this test...
+    	try
+        {
+            Calculator.execute(new String[] {"1 + 2 + 4"});
+            Assert.fail("Illegal expression did not throw an Exception");
+        }
+        catch (CalculatorException e)
+        {
+            // We expect the function to throw a CalculatorException.
+            // Check to make sure the CalculatorException has the correct message and type:
+            Assert.assertEquals("Illegal Command", e.getMessage());
+        }
+        catch (Exception e)
+        {
+            Assert.fail("Unexpected Exception (not CalculatorException) caught");
+        }
     }
 
     /**
